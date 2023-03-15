@@ -8,7 +8,8 @@ pipeline {
     }
 }
     stages {
-        stage("Create an EKS Cluster using eksctl") {
+        // stage("Create an EKS Cluster using eksctl") {
+        stage('Sequential') {    
             steps {
                 script {
                     dir('eksctl') {
