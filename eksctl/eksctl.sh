@@ -1,0 +1,11 @@
+eksctl create cluster \
+--name banina \
+--region us-east-1 \
+--with-oidc \
+--nodegroup-name banina-workers \
+--version 1.24 \
+--nodes 4 \
+--nodes-min 2 \
+--nodes-max 4 \
+--instance-types=t2.medium \
+--managed
