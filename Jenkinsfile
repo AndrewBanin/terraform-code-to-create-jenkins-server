@@ -1,4 +1,3 @@
-#!/usr/bin/env groovy
 pipeline {
     agent any
     environment {
@@ -8,18 +7,14 @@ pipeline {
     }
 }
     stages {
-        // stage("Create an EKS Cluster using eksctl") {
-        stage('Sequential') {    
+         stage("Create an EKS Cluster using eksctl") {  
             steps {
-                script {
-                    dir('eksctl') {
-                        sh "eksctl create cluster --name banina --region us-east-1 --with-oidc --nodegroup-name banina-workers --version 1.24 --nodes 4 --nodes-min 2 --nodes-max 4 --instance-types=t2.medium --managed"
-                        sh "aws eks update-kubeconfig --region us-east-1 --name banina"
+                    sh "eksctl create cluster --name banina --region us-east-1 --with-oidc --nodegroup-name banina-workers --version 1.24 --nodes 4 --nodes-min 2 --nodes-max 4 --instance-types=t2.medium --managed"
+                    sh "aws eks update-kubeconfig --region us-east-1 --name banina"
                     }
                 }
             }
-        }
-    }
+
 //         stage("Deploy to EKS") {
 //             steps {
 //                 script {
